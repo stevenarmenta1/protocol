@@ -14,12 +14,12 @@ A personal strength training tracker built as a single-page web app. Tracks a 10
 
 | Lift | Current | Goal |
 |------|---------|------|
-| Squat | 295 lb | 315 lb |
-| Bench | 245 lb | 265 lb |
-| Deadlift | 320 lb | 365 lb |
-| OHP | 165 lb | 185 lb |
+| Squat |  lb |  lb |
+| Bench |  lb |  lb |
+| Deadlift |  lb |  lb |
+| OHP |  lb |  lb |
 
-**Test Day:** July 1, 2026
+**Test Day:** Choose Test Date
 
 ## Run Locally
 
