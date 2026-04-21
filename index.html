@@ -329,7 +329,7 @@
 
   .ex {
     display: grid;
-    grid-template-columns: 32px 1fr auto auto;
+    grid-template-columns: 32px 1fr auto auto auto;
     gap: 16px;
     padding: 12px 0;
     border-bottom: 1px solid var(--rule);
@@ -492,6 +492,233 @@
     .workout { padding: 20px; }
     .workout-head { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
+
+  /* LOG BUTTON */
+  .log-btn {
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    line-height: 1;
+  }
+  .log-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .log-btn.logged { border-color: #2a6a3a; color: #4caf50; background: rgba(76, 175, 80, 0.08); }
+
+  /* LOG MODAL */
+  .log-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.85);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .log-overlay.open { opacity: 1; pointer-events: all; }
+
+  .log-modal {
+    background: #141210;
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    width: 100%;
+    max-width: 440px;
+    padding: 28px;
+  }
+
+  .log-modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .log-modal-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+
+  .log-field {
+    margin-bottom: 16px;
+  }
+
+  .log-field label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .log-field input, .log-field textarea {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .log-field input:focus, .log-field textarea:focus { border-color: var(--accent); }
+  .log-field textarea { resize: none; height: 60px; }
+
+  .log-modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .log-cancel {
+    flex: 1;
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .log-cancel:hover { border-color: var(--muted); color: var(--ink); }
+
+  .log-submit {
+    flex: 2;
+    background: var(--accent);
+    border: none;
+    color: var(--ink);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .log-submit:hover { opacity: 0.85; }
+
+  /* THE LOG SECTION */
+  .log-entries { margin-bottom: 64px; }
+
+  .log-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .log-day {
+    border-top: 1px solid var(--rule);
+    margin-bottom: 8px;
+  }
+
+  .log-day-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    padding: 14px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .log-day-header .log-day-date { color: var(--accent); }
+
+  .log-entry {
+    display: grid;
+    grid-template-columns: 1fr auto auto 28px;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+  .log-entry:last-child { border-bottom: none; }
+
+  .log-entry-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .log-entry-session {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  .log-entry-notes {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: #c4bfb5;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .log-entry-scheme {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .log-entry-weight {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    text-align: right;
+    min-width: 80px;
+  }
+
+  .log-entry-weight .unit {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: 2px;
+  }
+
+  .log-delete {
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+  .log-delete:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,61,0,0.08); }
 
   /* SCROLL ANIMATIONS */
   .reveal {
@@ -898,6 +1125,39 @@
     </div>
   </div>
 
+  <!-- LOG MODAL -->
+  <div class="log-overlay" id="log-overlay">
+    <div class="log-modal">
+      <div class="log-modal-title" id="log-modal-title">Log Exercise</div>
+      <div class="log-modal-sub" id="log-modal-sub">Prescribed: —</div>
+      <div class="log-field">
+        <label>Actual Weight (lb)</label>
+        <input type="number" id="log-input-weight" placeholder="e.g. 175" min="0">
+      </div>
+      <div class="log-field">
+        <label>Reps per set (e.g. 8, 8, 7, 8)</label>
+        <input type="text" id="log-input-reps" placeholder="e.g. 8, 8, 8, 8">
+      </div>
+      <div class="log-field">
+        <label>Notes (optional)</label>
+        <textarea id="log-input-notes" placeholder="Felt strong, left 2 in the tank..."></textarea>
+      </div>
+      <div class="log-modal-actions">
+        <button class="log-cancel" id="log-cancel">Cancel</button>
+        <button class="log-submit" id="log-confirm">Log It →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE LOG -->
+  <div class="reveal" id="log-section">
+    <div class="section-head">
+      <span class="section-num">06 /</span>
+      <span class="section-title">The Log</span>
+    </div>
+    <div class="log-entries" id="log-entries"></div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     Discipline <span class="accent">·</span> Consistency <span class="accent">·</span> Progress<br>
@@ -994,6 +1254,187 @@
       if (activeRow) activeRow.classList.add('current-week');
     }
   })();
+
+  // ─── WORKOUT LOGGER ───────────────────────────────────────────────
+  const LOG_KEY = 'protocol_log';
+  let pendingLog = null;
+
+  function getLog() {
+    try { return JSON.parse(localStorage.getItem(LOG_KEY)) || []; }
+    catch(e) { return []; }
+  }
+
+  function saveLog(entries) {
+    localStorage.setItem(LOG_KEY, JSON.stringify(entries));
+  }
+
+  function todayStr() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function getExerciseName(exEl) {
+    return exEl.querySelector('.ex-name').textContent.replace('★', '').trim();
+  }
+
+  function getSessionName(exEl) {
+    const workout = exEl.closest('.workout');
+    if (!workout) return '';
+    return workout.querySelector('.workout-day').textContent.replace(/^\d+/, '').trim();
+  }
+
+  function isLoggedToday(exerciseName) {
+    const today = todayStr();
+    return getLog().some(function(e) { return e.date === today && e.exercise === exerciseName; });
+  }
+
+  function addLogButtons() {
+    document.querySelectorAll('.ex').forEach(function(exEl) {
+      const name = getExerciseName(exEl);
+      if (name === 'Steady-state run') return;
+
+      const btn = document.createElement('button');
+      btn.className = 'log-btn';
+      btn.title = 'Log this set';
+      btn.textContent = '+';
+      btn.setAttribute('data-ex', name);
+
+      if (isLoggedToday(name)) btn.classList.add('logged');
+
+      btn.addEventListener('click', function() { openLogModal(exEl, btn); });
+      exEl.appendChild(btn);
+    });
+  }
+
+  function openLogModal(exEl, btn) {
+    const name = getExerciseName(exEl);
+    const session = getSessionName(exEl);
+    const scheme = exEl.querySelector('.ex-scheme').textContent;
+    const weightEl = exEl.querySelector('.ex-weight');
+    const weightText = weightEl ? weightEl.textContent.replace('lb', '').replace('—', '').trim() : '';
+
+    pendingLog = { exercise: name, session: session, scheme: scheme, btn: btn };
+
+    document.getElementById('log-modal-title').textContent = name;
+    document.getElementById('log-modal-sub').textContent = 'Prescribed: ' + scheme + (weightText ? ' @ ' + weightText + 'lb' : '');
+    document.getElementById('log-input-weight').value = weightText || '';
+    document.getElementById('log-input-reps').value = '';
+    document.getElementById('log-input-notes').value = '';
+
+    document.getElementById('log-overlay').classList.add('open');
+    document.getElementById('log-input-weight').focus();
+  }
+
+  function closeLogModal() {
+    document.getElementById('log-overlay').classList.remove('open');
+    pendingLog = null;
+  }
+
+  function submitLog() {
+    if (!pendingLog) return;
+    const weight = document.getElementById('log-input-weight').value.trim();
+    const reps = document.getElementById('log-input-reps').value.trim();
+    const notes = document.getElementById('log-input-notes').value.trim();
+
+    const entry = {
+      id: Date.now(),
+      date: todayStr(),
+      exercise: pendingLog.exercise,
+      session: pendingLog.session,
+      scheme: pendingLog.scheme,
+      weight: weight ? parseFloat(weight) : null,
+      reps: reps,
+      notes: notes,
+    };
+
+    const log = getLog();
+    log.unshift(entry);
+    saveLog(log);
+
+    if (pendingLog.btn) pendingLog.btn.classList.add('logged');
+    closeLogModal();
+    renderLog();
+  }
+
+  function renderLog() {
+    const container = document.getElementById('log-entries');
+    const log = getLog();
+
+    if (!log.length) {
+      container.innerHTML = '<div class="log-empty">No sessions logged yet — hit + on any exercise to start.</div>';
+      return;
+    }
+
+    const byDate = {};
+    log.forEach(function(e) {
+      if (!byDate[e.date]) byDate[e.date] = [];
+      byDate[e.date].push(e);
+    });
+
+    container.innerHTML = Object.keys(byDate).map(function(date) {
+      const entries = byDate[date];
+      const rows = entries.map(function(e) {
+        const weightHtml = e.weight
+          ? e.weight + '<span class="unit">lb</span>'
+          : '<span style="color:var(--muted)">—</span>';
+        const repsHtml = e.reps ? e.reps : '—';
+        const notesHtml = e.notes
+          ? '<div class="log-entry-notes">' + e.notes + '</div>'
+          : '';
+        return '<div class="log-entry">' +
+          '<div><div class="log-entry-name">' + e.exercise + '</div>' +
+          '<div class="log-entry-session">' + e.session + '</div>' + notesHtml + '</div>' +
+          '<div class="log-entry-scheme">' + repsHtml + '</div>' +
+          '<div class="log-entry-weight">' + weightHtml + '</div>' +
+          '<button class="log-delete" data-id="' + e.id + '">×</button>' +
+          '</div>';
+      }).join('');
+
+      const isToday = date === todayStr();
+      return '<div class="log-day">' +
+        '<div class="log-day-header">' +
+        '<span class="log-day-date">' + formatDate(date) + '</span>' +
+        (isToday ? '<span style="font-size:10px;color:var(--accent);letter-spacing:0.12em">TODAY</span>' : '') +
+        '</div>' + rows + '</div>';
+    }).join('');
+
+    container.querySelectorAll('.log-delete').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const id = parseInt(btn.getAttribute('data-id'));
+        const updated = getLog().filter(function(e) { return e.id !== id; });
+        saveLog(updated);
+        renderLog();
+        refreshLogButtons();
+      });
+    });
+  }
+
+  function refreshLogButtons() {
+    document.querySelectorAll('.log-btn').forEach(function(btn) {
+      const name = btn.getAttribute('data-ex');
+      btn.classList.toggle('logged', isLoggedToday(name));
+    });
+  }
+
+  document.getElementById('log-cancel').addEventListener('click', closeLogModal);
+  document.getElementById('log-confirm').addEventListener('click', submitLog);
+  document.getElementById('log-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeLogModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLogModal();
+    if (e.key === 'Enter' && document.getElementById('log-overlay').classList.contains('open')) {
+      e.preventDefault();
+      submitLog();
+    }
+  });
+
+  addLogButtons();
+  renderLog();
 </script>
 
 </body>
