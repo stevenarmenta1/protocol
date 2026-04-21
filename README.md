@@ -10,14 +10,14 @@ A personal strength training tracker built as a single-page web app. Tracks a 10
 - **Progress tracking** for Squat, Bench, Deadlift, and Overhead Press
 - **10-week progression table** with current week highlighted automatically
 
-## Current Program
+## Ex. Program
 
 | Lift | Current | Goal |
 |------|---------|------|
-| Squat |  lb |  lb |
-| Bench |  lb |  lb |
-| Deadlift |  lb |  lb |
-| OHP |  lb |  lb |
+| Squat |  |  |
+| Bench |  |  |
+| Deadlift |  |  |
+| OHP |  |  |
 
 **Test Day:** Choose Test Date
 
